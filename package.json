@@ -19,6 +19,8 @@
   "homepage": "https://github.com/amir-hu/Gamingcompendium#readme",
   "dependencies": {
     "bootstrap": "^5.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "request": "^2.88.2",
+    "require": "^2.4.20"
   }
 }
