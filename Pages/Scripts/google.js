@@ -36,7 +36,7 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
-        listMajors();
+        listTitles('Amir\'s Library');
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -76,18 +76,19 @@ function appendPre(message) {
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function listMajors() {
+function listTitles(sheetSelected) {
+    var rangeSelected = sheetSelected + '!A:B'
+
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
-        range: 'Amir\'s Library!A:E',
+        range: rangeSelected,
     }).then(function (response) {
         var range = response.result;
         if (range.values.length > 0) {
-            appendPre('Name, Major:');
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
                 // Print columns A and E, which correspond to indices 0 and 4.
-                appendPre(row[0] + ', ' + row[3]);
+                appendPre(row[0]);
             }
         } else {
             appendPre('No data found.');
