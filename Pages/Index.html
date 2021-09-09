@@ -27,13 +27,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" >Home</a>
-        <input class="form-control form-control-dark w-50" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" onclick="getallTitles()"> Get Titles </button>
-    </nav>
     <div id="renderList">
-        
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Home</a>
+            <input class="form-control form-control-dark w-50" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" onclick="getallTitles()"> Get Titles </button>
+        </nav>
+
+
     </div>
 
     <script async defer src="https://apis.google.com/js/api.js"

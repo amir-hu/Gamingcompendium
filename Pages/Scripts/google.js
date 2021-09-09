@@ -39,9 +39,9 @@ function initClient() {
 var listOfGames = new Set();
 
 function getallTitles() {
-    listOfGames = listTitles('Amir\'s Library', listOfGames);
-    listOfGames = listTitles('Barre\'s Library', listOfGames);
-    listOfGames = listTitles('Hassan\'s Library', listOfGames);
+    listTitles('Amir\'s Library', listOfGames);
+    listTitles('Barre\'s Library', listOfGames);
+    listTitles('Hassan\'s Library', listOfGames);
     var ul = document.createElement('ul');
     ul.setAttribute('id', 'myUL');
 
@@ -53,13 +53,18 @@ function getallTitles() {
         var li = document.createElement('li');
         ul.appendChild(li);
         li.appendChild(a)
+        li.style.display = "none";
+        a.setAttribute("href", "#");
         a.innerHTML = a.innerHTML + value;
     })
     /*for (const entry of it) {
         console.log(entry + " " + "\n");
     }
 */
-    console.log("Complete");
+
+    if (ul.childNodes.length == 0) { ul.remove();}
+    console.log("Complete " + ul.childNodes.length);
+
 }
 
 function updateSigninStatus(isSignedIn) {
@@ -110,30 +115,34 @@ function appendPre(message) {
 function myFunction() {
     // Declare variables
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('Mysearch');
+    input = document.getElementById("renderList").querySelector('#Mysearch');
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("renderList").querySelector("#myUL");
+    /*ul = rl.getElementByTagName("myUL")*/
     li = ul.getElementsByTagName('li');
-    
+    console.log(filter);
     
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
-        a = ul.getElementsByTagName('a')[0];
-        console.log(ul.getElementsByTagName('a')[0]);
+        a = ul.getElementsByTagName('a')[i];
+        
         txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        console.log(txtValue);
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1 && (filter.length > 1)) {
             li[i].style.display = "";
+            
         } else {
             li[i].style.display = "none";
         }
     }
 }
 
-function listTitles(sheetSelected, listOfGames) {
+function listTitles(sheetSelected) {
     
     var rangeSelected = sheetSelected + '!A:B'
 
-    var log = listOfGames;
+    
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
         range: rangeSelected,
@@ -160,5 +169,4 @@ function listTitles(sheetSelected, listOfGames) {
         appendPre('Error: ' + response.result.error.message);
     });
     
-    return listOfGames;
 }
