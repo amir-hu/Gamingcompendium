@@ -20,6 +20,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -27,67 +28,70 @@
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Home</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" >Home</a>
+        <input class="form-control form-control-dark w-50" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" onclick="getallTitles()"> Get Titles </button>
     </nav>
-
+    <div id="renderList">
+        
+    </div>
 
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
-            <div class="container-fluid">
-                <div class="row">
+    <div class="container-fluid">
+        <div class="row">
 
-                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-left pb-2 mb-3 border-bottom">
-                            <h1 class="h2">Dashboard</h1>
-                            <pre id="content" style="white-space: pre-wrap;"></pre>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-left pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <pre id="content" style="white-space: pre-wrap;"></pre>
 
-                            <div class="dropdown">
-                                <div class="btn-group mr-2">
-                                    <button id="authorize_button" class="btn btn-sm btn-outline-secondary">Authorize</button>
-                                    <button id="signout_button" class="btn btn-sm btn-outline-secondary">Sign Out</button>
-                                </div>
-
-                                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                    <span data-feather="calendar"></span>
-                                    Profiles
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Moawe</a>
-                                    <a class="dropdown-item" href="#">Linkz</a>
-                                    <a class="dropdown-item" href="#">Ogk_Ftg</a>
-                                </div>
-
-                            </div>
-
-                            <script type="text/javascript">
-                                // Client ID and API key from the Developer Console
-                                var CLIENT_ID = '450475856107-hjh2tioanhr3g98iom8101kots0j00m4.apps.googleusercontent.com';
-                                var API_KEY = 'AIzaSyDPIYQqZAzz5VNVE7MBTeoRQn-cG-YGiU8';
-
-                                // Array of API discovery doc URLs for APIs used by the quickstart
-                                var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-
-                                // Authorization scopes required by the API; multiple scopes can be
-                                // included, separated by spaces.
-                                var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-
-                                var authorizeButton = document.getElementById('authorize_button');
-                                var signoutButton = document.getElementById('signout_button');
-
-
-
-                            </script>
+                    <div class="dropdown">
+                        <div class="btn-group mr-2">
+                            <button id="authorize_button" class="btn btn-sm btn-outline-secondary">Authorize</button>
+                            <button id="signout_button" class="btn btn-sm btn-outline-secondary">Sign Out</button>
                         </div>
 
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                            <span data-feather="calendar"></span>
+                            Profiles
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Moawe</a>
+                            <a class="dropdown-item" href="#">Linkz</a>
+                            <a class="dropdown-item" href="#">Ogk_Ftg</a>
+                        </div>
 
-                     
+                    </div>
 
-                    </main>
+                    <script type="text/javascript">
+                        // Client ID and API key from the Developer Console
+                        var CLIENT_ID = '450475856107-hjh2tioanhr3g98iom8101kots0j00m4.apps.googleusercontent.com';
+                        var API_KEY = 'AIzaSyDPIYQqZAzz5VNVE7MBTeoRQn-cG-YGiU8';
+
+                        // Array of API discovery doc URLs for APIs used by the quickstart
+                        var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+                        // Authorization scopes required by the API; multiple scopes can be
+                        // included, separated by spaces.
+                        var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+                        var authorizeButton = document.getElementById('authorize_button');
+                        var signoutButton = document.getElementById('signout_button');
+
+
+
+                    </script>
                 </div>
-            </div>
+
+
+
+
+            </main>
+        </div>
+    </div>
 </body>
 </html>

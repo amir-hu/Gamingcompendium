@@ -1,3 +1,6 @@
+
+
+
 /**
         *  On load, called to load the auth2 library and API client library.
         */
@@ -32,11 +35,39 @@ function initClient() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
+
+var listOfGames = new Set();
+
+function getallTitles() {
+    listOfGames = listTitles('Amir\'s Library', listOfGames);
+    listOfGames = listTitles('Barre\'s Library', listOfGames);
+    listOfGames = listTitles('Hassan\'s Library', listOfGames);
+    var ul = document.createElement('ul');
+    ul.setAttribute('id', 'myUL');
+
+    document.getElementById('renderList').appendChild(ul);
+
+    
+    listOfGames.forEach(function (value) {
+        var a = document.createElement('a');
+        var li = document.createElement('li');
+        ul.appendChild(li);
+        li.appendChild(a)
+        a.innerHTML = a.innerHTML + value;
+    })
+    /*for (const entry of it) {
+        console.log(entry + " " + "\n");
+    }
+*/
+    console.log("Complete");
+}
+
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
+        
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
-        listTitles('Amir\'s Library');
+
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -74,26 +105,60 @@ function appendPre(message) {
 
 /**
  * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function listTitles(sheetSelected) {
+
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('Mysearch');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+    
+    
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = ul.getElementsByTagName('a')[0];
+        console.log(ul.getElementsByTagName('a')[0]);
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function listTitles(sheetSelected, listOfGames) {
+    
     var rangeSelected = sheetSelected + '!A:B'
 
+    var log = listOfGames;
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
         range: rangeSelected,
     }).then(function (response) {
         var range = response.result;
+        
         if (range.values.length > 0) {
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
                 // Print columns A and E, which correspond to indices 0 and 4.
-                appendPre(row[0]);
+                /*appendPre(row[0]);*/
+                listOfGames.add(row[0]);
             }
+
+/*            listOfGames.forEach(function (value) {
+                console.log(value + " " + "\n");
+            })*/
+        
+
         } else {
             appendPre('No data found.');
         }
     }, function (response) {
         appendPre('Error: ' + response.result.error.message);
     });
+    
+    return listOfGames;
 }
