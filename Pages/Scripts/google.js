@@ -1,5 +1,5 @@
 
-
+var signedIn;
 
 /**
         *  On load, called to load the auth2 library and API client library.
@@ -7,6 +7,8 @@
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
+
+
 
 /**
  *  Initializes the API client library and sets up sign-in state
@@ -20,12 +22,15 @@ function initClient() {
         scope: SCOPES
     }).then(function () {
         // Listen for sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+        signedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+        console.log("set signin " + signedIn);
 
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+        
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
+        /*signoutButton.onclick = handleSignoutClick;*/
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
@@ -69,13 +74,17 @@ function getallTitles() {
 
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
+
+        console.log("should close");
+        $('#myModal').modal('hide');
+
         
         authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
+     
 
     } else {
         authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
+        
     }
 }
 
@@ -102,8 +111,8 @@ function handleSignoutClick(event) {
          *
          * @param {string} message Text to be placed in pre element.
          */
-function appendPre(message) {
-    var pre = document.getElementById('content');
+function appendPre(message,id) {
+    var pre = document.getElementById(id);
     var textContent = document.createTextNode(message + '\n');
     pre.appendChild(textContent);
 }
@@ -138,6 +147,9 @@ function myFunction() {
     }
 }
 
+
+
+
 function listTitles(sheetSelected) {
     
     var rangeSelected = sheetSelected + '!A:B'
@@ -160,6 +172,38 @@ function listTitles(sheetSelected) {
 /*            listOfGames.forEach(function (value) {
                 console.log(value + " " + "\n");
             })*/
+        
+
+        } else {
+            appendPre('No data found.');
+        }
+    }, function (response) {
+        appendPre('Error: ' + response.result.error.message);
+    });
+    
+}
+
+
+function getRecentlyPlayed(sheetSelected) {
+
+    var rangeSelected = sheetSelected + '!A:C'
+
+    
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
+        range: rangeSelected,
+    }).then(function (response) {
+        var range = response.result;
+        
+        if (range.values.length > 0) {
+            for (i = 0; i < range.values.length; i++) {
+                var row = range.values[i];
+                if (row[2] == "Status") {
+                    appendPre()
+                }    
+                        
+            }
+
         
 
         } else {
