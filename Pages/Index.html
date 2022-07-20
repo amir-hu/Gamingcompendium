@@ -28,20 +28,26 @@
 
 
 <body>
+<!--    <script type="text/javascript">
+        // Client ID and API key from the Developer Console
+        var CLIENT_ID = '450475856107-hjh2tioanhr3g98iom8101kots0j00m4.apps.googleusercontent.com';
+        var API_KEY = 'AIzaSyDPIYQqZAzz5VNVE7MBTeoRQn-cG-YGiU8';
 
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        // Array of API discovery doc URLs for APIs used by the quickstart
+        var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+        // Authorization scopes required by the API; multiple scopes can be
+        // included, separated by spaces.
+        var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+       // var authorizeButton = document.getElementById('authorize_button');
+
+        getallTitles(); getallTitles();
+        console.log("helooo")
+
+
     </script>
-
-    <script>
-        $(document).ready(function () {
-            console.log(signedIn);
-            $("#myModal").modal('show');
-
-        });
-    </script>
-
+   -->
 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">
@@ -60,11 +66,12 @@
         </div>
     </div>
 
+
     <div id="renderList">
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Home</a>
-            <input class="form-control form-control-dark w-50" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" onclick="getallTitles()"> Get Titles </button>
+            <!--<a class="navbar-brand col-sm-3 col-md-2 mr-10" href="#">Home</a>-->
+            <input class="form-control form-control-dark w-50 mr-auto ml-sm-auto" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
+            
         </nav>
 
 
@@ -80,117 +87,27 @@
                     <pre id="content" style="white-space: pre-wrap;"></pre>
 
                     <div class="dropdown">
-                        <!--                        <div class="btn-group mr-2">
-                                                    <button id="authorize_button" class="btn btn-outline-light">Authorize</button>
-                                                    <button id="signout_button" class="btn btn-outline-light" style="display: none;">Sign Out</button>
-                                                </div>-->
+                        <!--     Broken needs fixing         -->
 
                         <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
                             <span data-feather="calendar"></span>
                             Profiles
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Moawe</a>
-                            <a class="dropdown-item" href="#">Linkz</a>
-                            <a class="dropdown-item" href="#">Ogk_Ftg</a>
-                        </div>
 
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Moawe</a>
+                                <a class="dropdown-item" href="#">Linkz</a>
+                                <a class="dropdown-item" href="#">Ogk_Ftg</a>
+                            </div>
+                        </button>
                     </div>
 
-                    <script type="text/javascript">
-                        // Client ID and API key from the Developer Console
-                        var CLIENT_ID = '450475856107-hjh2tioanhr3g98iom8101kots0j00m4.apps.googleusercontent.com';
-                        var API_KEY = 'AIzaSyDPIYQqZAzz5VNVE7MBTeoRQn-cG-YGiU8';
 
-                        // Array of API discovery doc URLs for APIs used by the quickstart
-                        var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-
-                        // Authorization scopes required by the API; multiple scopes can be
-                        // included, separated by spaces.
-                        var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-
-                        var authorizeButton = document.getElementById('authorize_button');
-
-
-
-
-                    </script>
                 </div>
             </main>
         </div>
     </div>
 
-    <div class="container-fluid" id="mainSect">
-        <table class="table table-dark table-striped">
-            <thead>
-                <!--<tr>
-                    <th scope="col">Recently played</th>
-                    <th scope="col">Recently played</th>
-                    <th scope="col"></th>
-                </tr>-->
-                <tr>
-                    <th scope="col">Recently Played</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-
-                    <td>Linkz</td>
-                    <td>Fifa</td>
-                    <td>Paper mario</td>
-                    <td>Zelda</td>
-                </tr>
-                <tr>
-                    <td>Moawe</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-
-                    <td>Ogk_Ftg</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-dark table-striped">
-            <thead>
-                <!--<tr>
-                    <th scope="col">Recently played</th>
-                    <th scope="col">Recently played</th>
-                    <th scope="col"></th>
-                </tr>-->
-                <tr>
-                    <th scope="col">Top Rated</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-
-                    <td>Linkz</td>
-                    <td>Fifa</td>
-                    <td>Paper mario</td>
-                    <td>Zelda</td>
-                </tr>
-                <tr>
-                    <td>Moawe</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-
-                    <td>Ogk_Ftg</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-
+  
 
 
         <!--        <div class="container-fluid" id="Lcp">

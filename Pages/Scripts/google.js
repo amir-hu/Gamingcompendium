@@ -7,7 +7,7 @@ var signedIn;
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
-
+//NEW API KEY AIzaSyBHEF5rACdWEOec_4kI9y1ThX8-_IlmCQ0
 
 
 /**
@@ -42,6 +42,7 @@ function initClient() {
  */
 
 var listOfGames = new Set();
+var listOfRecentlyPlayed = new Set();
 
 function getallTitles() {
     listTitles('Amir\'s Library', listOfGames);
@@ -79,11 +80,11 @@ function updateSigninStatus(isSignedIn) {
         $('#myModal').modal('hide');
 
         
-        authorizeButton.style.display = 'none';
+        //authorizeButton.style.display = 'none';
      
 
     } else {
-        authorizeButton.style.display = 'block';
+       // authorizeButton.style.display = 'block';
         
     }
 }
