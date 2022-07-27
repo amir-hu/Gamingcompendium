@@ -44,14 +44,20 @@ function initClient() {
 var listOfGames = new Set();
 
 function getallTitles() {
-    listTitles('Amir\'s Library', listOfGames);
-    listTitles('Barre\'s Library', listOfGames);
-    listTitles('Hassan\'s Library', listOfGames);
+    var acur = listTitles('Amir\'s Library', listOfGames);
+    var bcur = listTitles('Barre\'s Library', listOfGames);
+    var alcur = listTitles('Hassan\'s Library', listOfGames);
     var ul = document.createElement('ul');
     ul.setAttribute('id', 'myUL');
 
     document.getElementById('renderList').appendChild(ul);
-
+    console.log(acur);
+    console.log(listOfGames);
+    
+    acur2 = acur.values()
+    for (const a of acur2) {
+        console.log("hello" + a[0]);
+    }
     
     listOfGames.forEach(function (value) {
         var a = document.createElement('a');
@@ -59,7 +65,7 @@ function getallTitles() {
         ul.appendChild(li);
         li.appendChild(a)
         li.style.display = "none";
-        a.setAttribute("href", "#");
+        a.setAttribute("href", "?" + value);
         a.innerHTML = a.innerHTML + value;
     })
     /*for (const entry of it) {
@@ -70,6 +76,7 @@ function getallTitles() {
     if (ul.childNodes.length == 0) { ul.remove();}
     console.log("Complete " + ul.childNodes.length);
 
+    
 }
 
 function updateSigninStatus(isSignedIn) {
@@ -152,21 +159,26 @@ function myFunction() {
 
 function listTitles(sheetSelected) {
     
-    var rangeSelected = sheetSelected + '!A:B'
+    var rangeSelected = sheetSelected + '!A:F'
 
-    
+    var crntplyng = new Set();
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
         range: rangeSelected,
     }).then(function (response) {
         var range = response.result;
-        
         if (range.values.length > 0) {
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
                 // Print columns A and E, which correspond to indices 0 and 4.
                 /*appendPre(row[0]);*/
                 listOfGames.add(row[0]);
+                //console.log(row[2])
+                if (row[2] === "Playing") {
+                   // console.log(row[0]);
+                    var details = [row[0], row[1]];
+                    crntplyng.add(details);
+                }
             }
 
 /*            listOfGames.forEach(function (value) {
@@ -180,6 +192,8 @@ function listTitles(sheetSelected) {
     }, function (response) {
         appendPre('Error: ' + response.result.error.message);
     });
+    
+    return crntplyng;
     
 }
 
