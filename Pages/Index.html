@@ -28,19 +28,19 @@
 
 
 <body>
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+            console.log("hello--");
 
+        });
+        console.log("hello--");
+    </script>
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
-    <script>
-        $(document).ready(function () {
-            console.log(signedIn);
-            $("#myModal").modal('show');
-
-        });
-    </script>
 
 
     <div id="myModal" class="modal fade">
@@ -62,13 +62,15 @@
 
     <div id="renderList">
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Home</a>
-            <input class="form-control form-control-dark w-50" id="Mysearch" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" onclick="getallTitles()"> Get Titles </button>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Home</a>
+            <input class="form-control form-control-dark w-50 ml-autox ml-sm-auto mr-auto" id="Mysearch" onkeyup="myFunction()" onclick="getallTitles()" type="text" placeholder="Search" aria-label="Search">
+
+
         </nav>
 
 
     </div>
+
 
 
 
@@ -109,10 +111,6 @@
                         // included, separated by spaces.
                         var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-                        var authorizeButton = document.getElementById('authorize_button');
-
-
-
 
                     </script>
                 </div>
@@ -120,90 +118,143 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="mainSect">
-        <table class="table table-dark table-striped">
-            <thead>
-                <!--<tr>
-                    <th scope="col">Recently played</th>
-                    <th scope="col">Recently played</th>
-                    <th scope="col"></th>
-                </tr>-->
-                <tr>
-                    <th scope="col">Recently Played</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+    <div class="row">
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
 
-                    <td>Linkz</td>
-                    <td>Fifa</td>
-                    <td>Paper mario</td>
-                    <td>Zelda</td>
-                </tr>
-                <tr>
-                    <td>Moawe</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
+                    <tr>
+                        <th scope="col">Amir's Currently Playing</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
 
-                    <td>Ogk_Ftg</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
+                        <td>1</td>
+                        <td>Fifa</td>
+                        <td>PS5</td>
 
-        <table class="table table-dark table-striped">
-            <thead>
-                <!--<tr>
-                    <th scope="col">Recently played</th>
-                    <th scope="col">Recently played</th>
-                    <th scope="col"></th>
-                </tr>-->
-                <tr>
-                    <th scope="col">Top Rated</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-
-                    <td>Linkz</td>
-                    <td>Fifa</td>
-                    <td>Paper mario</td>
-                    <td>Zelda</td>
-                </tr>
-                <tr>
-                    <td>Moawe</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-
-                    <td>Ogk_Ftg</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-
-
-
-        <!--        <div class="container-fluid" id="Lcp">
-            <h5>Linkz Currently playing</h5>
-
-
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div id="mcp">
-            <h5>Moawe Currently playing</h5>
+
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
+
+                    <tr>
+                        <th scope="col">Barre's Currently Playing</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>1</td>
+                        <td>Fifa</td>
+                        <td>PS5</td>
+
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div id="ocp">
-            <h5>Ogk_Ftg Currently playing</h5>
-        </div>-->
+
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
+
+                    <tr>
+                        <th scope="col">Alhassan's Currently Playing</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>1</td>
+                        <td>plague tale innocence</td>
+                        <td>PS5</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
+    <div class="row">
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
+
+                    <tr>
+                        <th scope="col">Amir's Top Rated Games</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>1</td>
+                        <td>Fifa</td>
+                        <td>PS5</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
+
+                    <tr>
+                        <th scope="col">Barre's Top Rated Games</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>1</td>
+                        <td>Fifa</td>
+                        <td>PS5</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-fluid col-md-4" id="mainSect">
+            <table class="table table-dark table-striped">
+                <thead>
+
+                    <tr>
+                        <th scope="col">Alhassan's Top Rated Games</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>1</td>
+                        <td>plague tale innocence</td>
+                        <td>PS5</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 </body>
 </html>

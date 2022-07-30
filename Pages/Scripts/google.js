@@ -8,7 +8,28 @@ function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
 
+var listOfGames = new Set();
 
+function parse(info) {
+    var range = info;
+    var crntplyng = new Set();
+    if (range.values.length > 0) {
+        for (i = 0; i < range.values.length; i++) {
+            var row = range.values[i];
+            // Print columns A and E, which correspond to indices 0 and 4.
+            /*appendPre(row[0]);*/
+            listOfGames.add(row[0]);
+            //console.log(row[2])
+            if (row[2] === "Playing") {
+                // console.log(row[0]);
+                //var details = row[0] + "~" + row[1];
+                crntplyng.add(row[0] + "~" + row[1]);
+            }
+        }
+        
+    }
+    return crntplyng;
+}
 
 /**
  *  Initializes the API client library and sets up sign-in state
@@ -26,14 +47,78 @@ function initClient() {
         console.log("set signin " + signedIn);
 
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+        var rangeSelected = 'Amir\'s Library' + '!A:F' 
+
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
+            range: rangeSelected,
+        }).then(function (response) {
+            console.log(response.result);
+            var ainfo = response.result;
+            var acur = parse(ainfo);
+            parse(ainfo);
+
+        });
         
+        var rangeSelected = 'Hassan\'s Library' + '!A:F' 
+
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
+            range: rangeSelected,
+        }).then(function (response) {
+            console.log(response.result);
+            var alinfo = response.result;
+            var alcur = parse(alinfo);
+            parse(alinfo);
+            
+            console.log(alcur);
+
+
+            
+        });
+
+        var rangeSelected = 'Barre\'s Library' + '!A:F'
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
+            range: rangeSelected,
+        }).then(function (response) {
+            console.log(response.result);
+            var binfo = response.result;
+            var bcur = parse(binfo);
+            parse(binfo);
+
+            var ul = document.createElement('ul');
+            ul.setAttribute('id', 'myUL');
+
+            document.getElementById('renderList').appendChild(ul);
+
+
+            listOfGames.forEach(function (value) {
+                var a = document.createElement('a');
+                var li = document.createElement('li');
+                ul.appendChild(li);
+                li.appendChild(a)
+                li.style.display = "none";
+                a.setAttribute("href", "?" + value);
+                a.innerHTML = a.innerHTML + value;
+            });
+            console.log(listOfGames);
+        });
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
-        /*signoutButton.onclick = handleSignoutClick;*/
+
+        
+        
+
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
+    
+
+    
+
+
 }
 
 /**
@@ -41,33 +126,32 @@ function initClient() {
  *  appropriately. After a sign-in, the API is called.
  */
 
-var listOfGames = new Set();
+
 
 function getallTitles() {
+   
+
     var acur = listTitles('Amir\'s Library', listOfGames);
     var bcur = listTitles('Barre\'s Library', listOfGames);
     var alcur = listTitles('Hassan\'s Library', listOfGames);
-    var ul = document.createElement('ul');
-    ul.setAttribute('id', 'myUL');
 
-    document.getElementById('renderList').appendChild(ul);
-    console.log(acur);
+
+    
     console.log(listOfGames);
     
     acur2 = acur.values()
-    for (const a of acur2) {
-        console.log("hello" + a[0]);
-    }
+    console.log(acur);
+    setTimeout(function () {
+        console.log("herrro");
+        for (const a of acur) {
+            console.log("hello" + a[0]);
+        }
+    },15000)
     
-    listOfGames.forEach(function (value) {
-        var a = document.createElement('a');
-        var li = document.createElement('li');
-        ul.appendChild(li);
-        li.appendChild(a)
-        li.style.display = "none";
-        a.setAttribute("href", "?" + value);
-        a.innerHTML = a.innerHTML + value;
-    })
+    
+    
+    
+    
     /*for (const entry of it) {
         console.log(entry + " " + "\n");
     }
@@ -161,12 +245,14 @@ function listTitles(sheetSelected) {
     
     var rangeSelected = sheetSelected + '!A:F'
 
-    var crntplyng = new Set();
+    var crntplyng = [];
+    
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1rh6OBMPmuSerG5XRubUZIQqy-l5SXdxkNoloL7m638c',
         range: rangeSelected,
     }).then(function (response) {
         var range = response.result;
+        
         if (range.values.length > 0) {
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
@@ -176,8 +262,8 @@ function listTitles(sheetSelected) {
                 //console.log(row[2])
                 if (row[2] === "Playing") {
                    // console.log(row[0]);
-                    var details = [row[0], row[1]];
-                    crntplyng.add(details);
+                    //var details = row[0] + "~" + row[1];
+                    crntplyng.push(row[0] + "~" + row[1]);
                 }
             }
 
@@ -192,7 +278,8 @@ function listTitles(sheetSelected) {
     }, function (response) {
         appendPre('Error: ' + response.result.error.message);
     });
-    
+
+    console.log(crntplyng);
     return crntplyng;
     
 }
