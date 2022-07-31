@@ -31,6 +31,33 @@ function parse(info) {
     return crntplyng;
 }
 
+function crttble(id, curplay) {
+
+    var og = document.getElementById(id);
+    var number = 1;
+    curplay.forEach(function (value) {
+
+        var info = value.split("~");
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td');
+        td1.innerHTML = td1.innerHTML + number;
+
+        var td2 = document.createElement('td');
+        td2.innerHTML = td2.innerHTML + info[0];
+
+        var td3 = document.createElement('td');
+        td3.innerHTML = td3.innerHTML + info[1];
+
+        og.appendChild(tr).appendChild(td1);
+        og.appendChild(tr).appendChild(td2);
+        og.appendChild(tr).appendChild(td3);
+        number++;
+    });
+
+    
+}
+
+
 /**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
@@ -57,6 +84,7 @@ function initClient() {
             var ainfo = response.result;
             var acur = parse(ainfo);
             parse(ainfo);
+            crttble("aCurplay", acur);
 
         });
         
@@ -72,7 +100,7 @@ function initClient() {
             parse(alinfo);
             
             console.log(alcur);
-
+            crttble("alCurplay", alcur);
 
             
         });
@@ -87,6 +115,7 @@ function initClient() {
             var bcur = parse(binfo);
             parse(binfo);
 
+            crttble("bCurplay", bcur);
             var ul = document.createElement('ul');
             ul.setAttribute('id', 'myUL');
 
@@ -103,6 +132,7 @@ function initClient() {
                 a.innerHTML = a.innerHTML + value;
             });
             console.log(listOfGames);
+            
         });
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
@@ -170,11 +200,11 @@ function updateSigninStatus(isSignedIn) {
         $('#myModal').modal('hide');
 
         
-        authorizeButton.style.display = 'none';
+        //authorizeButton.style.display = 'none';
      
 
     } else {
-        authorizeButton.style.display = 'block';
+        //authorizeButton.style.display = 'block';
         
     }
 }
