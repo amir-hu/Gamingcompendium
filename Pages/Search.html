@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Big Book of Gaming</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./Scripts/google.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body>
+ 
+    
+    <div id="renderList">
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Home</a>
+            <input class="form-control form-control-dark w-50 ml-autox ml-sm-auto mr-auto" id="Mysearch" onkeyup="myFunction()" onclick="getallTitles()" type="text" placeholder="Search" aria-label="Search">
+
+
+        </nav>
+
+
+    </div>
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <main role="main" class="col-md-20 ml-sm-auto col-lg-20 pt-4 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-left pb-2 mb-3 border-bottom">
+                    
+                    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+                    <div class="dropdown">
+                        
+                        <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
+                            <span data-feather="calendar"></span>
+                            Profiles
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Moawe</a>
+                            <a class="dropdown-item" href="#">Linkz</a>
+                            <a class="dropdown-item" href="#">Ogk_Ftg</a>
+                        </div>
+
+                    </div>
+
+                    <script type="text/javascript">
+                        // Client ID and API key from the Developer Console
+                        var CLIENT_ID = '450475856107-hjh2tioanhr3g98iom8101kots0j00m4.apps.googleusercontent.com';
+                        var API_KEY = 'AIzaSyDPIYQqZAzz5VNVE7MBTeoRQn-cG-YGiU8';
+
+                        // Array of API discovery doc URLs for APIs used by the quickstart
+                        var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+                        // Authorization scopes required by the API; multiple scopes can be
+                        // included, separated by spaces.
+                        var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+
+                    </script>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

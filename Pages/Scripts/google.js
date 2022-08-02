@@ -20,16 +20,51 @@ function parse(info) {
             /*appendPre(row[0]);*/
             listOfGames.add(row[0]);
             //console.log(row[2])
-            if (row[2] === "Playing") {
+            if (row[2] === "Playing" || row[2] === "Replaying") {
                 // console.log(row[0]);
                 //var details = row[0] + "~" + row[1];
-                crntplyng.add(row[0] + "~" + row[1]);
+                var replay = "";
+                if (row[2] === "Replaying") {
+                    replay = " (Replaying)";
+                }
+                crntplyng.add(row[0] + replay + "~" + row[1]);
             }
         }
         
     }
     return crntplyng;
 }
+
+function tprtdtble(id, tprtd) {
+
+    var og = document.getElementById(id);
+    
+    for (i = 1; i < 6; i++) {
+        var row = tprtd.values[i];
+
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td');
+        td1.innerHTML = td1.innerHTML + (i);
+
+        var td2 = document.createElement('td');
+        td2.innerHTML = td2.innerHTML + row[0];
+
+        var td3 = document.createElement('td');
+        td3.innerHTML = td3.innerHTML + row[1];
+
+        var td4 = document.createElement('td');
+        td4.innerHTML = td4.innerHTML + row[5];
+
+        og.appendChild(tr).appendChild(td1);
+        og.appendChild(tr).appendChild(td2);
+        og.appendChild(tr).appendChild(td3);
+        og.appendChild(tr).appendChild(td4);
+
+    }
+
+}
+
+
 
 function crttble(id, curplay) {
 
@@ -85,7 +120,7 @@ function initClient() {
             var acur = parse(ainfo);
             parse(ainfo);
             crttble("aCurplay", acur);
-
+            tprtdtble("aTpRtd", ainfo);
         });
         
         var rangeSelected = 'Hassan\'s Library' + '!A:F' 
@@ -101,7 +136,7 @@ function initClient() {
             
             console.log(alcur);
             crttble("alCurplay", alcur);
-
+            tprtdtble("alTpRtd", alinfo);
             
         });
 
@@ -116,6 +151,7 @@ function initClient() {
             parse(binfo);
 
             crttble("bCurplay", bcur);
+            tprtdtble("bTpRtd", binfo);
             var ul = document.createElement('ul');
             ul.setAttribute('id', 'myUL');
 
@@ -128,7 +164,7 @@ function initClient() {
                 ul.appendChild(li);
                 li.appendChild(a)
                 li.style.display = "none";
-                a.setAttribute("href", "?" + value);
+                a.setAttribute("href", window.location.href + "Search.html?" + value);
                 a.innerHTML = a.innerHTML + value;
             });
             console.log(listOfGames);
