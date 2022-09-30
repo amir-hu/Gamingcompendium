@@ -18,10 +18,16 @@
   },
   "homepage": "https://github.com/amir-hu/Gamingcompendium#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "bing-image-search-api-scraper": "^1.0.0",
     "bootstrap": "^5.1.1",
+    "browserify": "^17.0.0",
+    "cheerio": "^1.0.0-rc.12",
     "express": "^4.17.1",
     "hashset": "0.0.6",
+    "jquery": "^3.6.0",
+    "python-shell": "^3.0.1",
     "request": "^2.88.2",
-    "require": "^2.4.20"
+    "require": "^0.4.4"
   }
 }
