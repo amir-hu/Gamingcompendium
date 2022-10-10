@@ -4,15 +4,14 @@ const cors = require('cors')
 var app = express();			        // this is our express.js instance
 const PORT = process.env.PORT || 5000;  // Port should be 5000 by default
 
+app.use(cors({
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+
 
 app.use(express.static(path.join(__dirname, 'Pages'))) // lets us serve static files from the "public" directory
     .get('/', (req, res, next) => {                           // respond to HTTP GET request. '/' is the root endpoint.
         res.sendFile(path.join(__dirname, 'Pages/Index.html')) // serve the landing static page
-        res.header("Access-Control-Allow-Origin", '*');
-        res.header("Access-Control-Allow-Credentials", true);
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-        res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-        next();
     })
 
     .listen(PORT); // keep the server listening on port 5000
