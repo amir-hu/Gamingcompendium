@@ -3,11 +3,11 @@ var express = require('express');	    // use the express module
 const cors = require('cors')
 var app = express();			        // this is our express.js instance
 const PORT = process.env.PORT || 5000;  // Port should be 5000 by default
-
+/**
 app.use(cors({
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
-
+*/
 
 app.use(express.static(path.join(__dirname, 'Pages'))) // lets us serve static files from the "public" directory
     .get('/', (req, res, next) => {                           // respond to HTTP GET request. '/' is the root endpoint.
