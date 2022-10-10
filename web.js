@@ -4,7 +4,13 @@ const cors = require('cors')
 var app = express();			        // this is our express.js instance
 const PORT = process.env.PORT || 5000;  // Port should be 5000 by default
 
-app.use(cors());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
 
 app.use(express.static(path.join(__dirname, 'Pages'))) // lets us serve static files from the "public" directory
     .get('/', (req, res) => {                           // respond to HTTP GET request. '/' is the root endpoint.
