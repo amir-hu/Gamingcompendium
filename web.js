@@ -4,9 +4,7 @@ const cors = require('cors')
 var app = express();			        // this is our express.js instance
 const PORT = process.env.PORT || 5000;  // Port should be 5000 by default
 
-app.use(cors({
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}));
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, 'Pages'))) // lets us serve static files from the "public" directory
