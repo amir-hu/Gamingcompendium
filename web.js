@@ -3,6 +3,8 @@ var express = require('express');	    // use the express module
 const cors = require('cors')
 var app = express();			        // this is our express.js instance
 const PORT = process.env.PORT || 5000;  // Port should be 5000 by default
+const cors = require("cors");
+app.use(cors());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
